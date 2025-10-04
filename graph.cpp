@@ -9,7 +9,14 @@ void print(const vector<vector<int>> &graph);
 void bfs(vector<vector<int>> &G, int start);
 void dfs_(vector<vector<int>> &G, vector<int> &traversal, vector<bool> &visited, int node);
 void dfs(vector<vector<int>> &G, int start);
-
+vector<vector<int>> grapher(const string& input) {
+    istringstream iss(input);
+    streambuf* cinbuf = cin.rdbuf(); 
+    cin.rdbuf(iss.rdbuf());
+    auto G = graph();
+    cin.rdbuf(cinbuf); 
+    return G;
+}
 vector<vector<int>> graph(){
     int nodes;cin>>nodes;
     vector<vector<int>> graphs;
@@ -20,14 +27,6 @@ vector<vector<int>> graph(){
         for(int j=0;j<degree;j++)cin>>current[j];
         graphs.push_back(current);
     }return graphs;
-}
-vector<vector<int>> grapher(const string& input) {
-    istringstream iss(input);
-    streambuf* cinbuf = cin.rdbuf(); 
-    cin.rdbuf(iss.rdbuf());
-    auto G = graph();
-    cin.rdbuf(cinbuf); 
-    return G;
 }
 void print(const vector<vector<int>> &graph){
     cout<<"Graph:"<<endl;
@@ -79,54 +78,3 @@ int main(){
     bfs(G,0);
     return 0;
 }
-/*
-INPUT:
-8
-2
-1 4
-3
-0 2 3
-1
-1
-1
-1
-3
-0 5 7
-2    
-4 6
-2
-5 7
-2
-4 6
-DFS >> 0 1 2 3 4 5 6 7 
-
-./graph
-8
-2
-1 4
-3
-0 2 3
-1
-1
-1
-1
-3
-0 5 7
-2    
-4 6
-2
-5 7
-2
-4 6
-Graph:
-0 >> 1 4 
-1 >> 0 2 3 
-2 >> 1 
-3 >> 1 
-4 >> 0 5 7 
-5 >> 4 6 
-6 >> 5 7 
-7 >> 4 6 
-DFS >> 1 0 4 5 6 7 2 3 
-
-*/
