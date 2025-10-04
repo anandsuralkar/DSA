@@ -1,7 +1,20 @@
-DSA practice in CPP
+# DSA Practice
 
-Codes include:
+This repository contains my **Data Structures and Algorithms (DSA) practice**, currently focusing on **graph traversal algorithms**.
 
-Graph creation
-BFS
-DFS
+## Algorithms Implemented
+
+### 1. Breadth-First Search (BFS)
+- Traverses graphs level by level.
+- Supports **adjacency list**.
+- Works for **directed** and **undirected** graphs.
+
+### 2. Depth-First Search (DFS)
+- Traverses graphs depth-wise.
+- Supports **recursive**.
+
+## Usage
+
+1. Clone the repository:
+```bash
+git clone <repo_url>
