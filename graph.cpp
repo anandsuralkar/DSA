@@ -1,40 +1,48 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<sstream>
 using namespace std;
+vector<vector<int>> Grapher(const std::string& input);
+vector<vector<int>> graph();
+void print(const vector<vector<int>> &graph);
+void bfs(vector<vector<int>> &G, int start);
+void dfs_(vector<vector<int>> &G, vector<int> &traversal, vector<bool> &visited, int node);
+void dfs(vector<vector<int>> &G, int start);
 
 vector<vector<int>> graph(){
-    int nodes;
-    cin>>nodes;
+    int nodes;cin>>nodes;
     vector<vector<int>> graphs;
 
     for(int i=0;i<nodes;i++){
-        int degree;
-        cin>>degree;
+        int degree;cin>>degree;
         vector<int> current(degree);
-        for(int j=0;j<degree;j++){
-            cin>>current[j];
-        }
+        for(int j=0;j<degree;j++)cin>>current[j];
         graphs.push_back(current);
-    }
-    return graphs;
+    }return graphs;
+}
+vector<vector<int>> grapher(const string& input) {
+    istringstream iss(input);
+    streambuf* cinbuf = cin.rdbuf(); 
+    cin.rdbuf(iss.rdbuf());
+    auto G = graph();
+    cin.rdbuf(cinbuf); 
+    return G;
 }
 void print(const vector<vector<int>> &graph){
     cout<<"Graph:"<<endl;
     for(int i=0;i<(int)graph.size();i++){
         cout<<i<<" >> ";
-        for (int j=0;j<(int)graph[i].size();j++){
-            cout<<graph[i][j]<<" ";
-        }cout<<endl;
+        for (int j=0;j<(int)graph[i].size();j++)cout<<graph[i][j]<<" ";cout<<endl;
     }
 }
 void bfs(vector<vector<int>> &G, int start){
-    print(G);
     int nodes = G.size();
     vector<bool> visited(nodes,false);
     queue<int> q;
     q.push(start);
     visited[start]=true;
+    cout<<"BFS >> ";
     while(!q.empty()){
         int current = q.front();
         q.pop();
@@ -64,17 +72,15 @@ void dfs(vector<vector<int>> &G, int start){
     for(int node: traversal)cout<<node<<" ";cout<<endl;
 }
 int main(){
-    vector<vector<int>>G = graph();
+    string input = "8 2 1 4 3 0 2 3 1 1 1 1 3 0 5 7 2 4 6 2 5 7 2 4 6 ";
+    vector<vector<int>>G = grapher(input);
     print(G);
     dfs(G,0);
+    bfs(G,0);
     return 0;
 }
-
-
 /*
-
 INPUT:
-
 8
 2
 1 4
@@ -92,7 +98,7 @@ INPUT:
 5 7
 2
 4 6
-
+DFS >> 0 1 2 3 4 5 6 7 
 
 ./graph
 8
