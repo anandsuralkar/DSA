@@ -1,0 +1,49 @@
+g++ graph.cpp -o graph
+./graph
+Graph:
+0 >> 1 4 
+1 >> 0 2 3 
+2 >> 1 
+3 >> 1 
+4 >> 0 5 7 
+5 >> 4 6 
+6 >> 5 7 
+7 >> 4 6 
+8 >> 9 
+9 >> 8 10 
+10 >> 9 
+11 >> 12 13 
+12 >> 11 14 
+13 >> 11 14 
+14 >> 12 13 
+15 >> 16 17 
+16 >> 15 17 
+17 >> 15 16 18 
+18 >> 17 
+19 >> 
+dfs_connected >> 0 1 2 3 4 5 6 7 
+bfs_connected >> 0 1 4 2 3 5 7 6 
+BFS -> 
+Connected compunent: 1
+0 1 4 2 3 5 7 6 
+Connected compunent: 2
+8 9 10 
+Connected compunent: 3
+11 12 13 14 
+Connected compunent: 4
+15 16 17 18 
+Connected compunent: 5
+19 
+DFS ->
+Connected component: 1
+0 2 1 3 5 4 7 6 
+Connected component: 2
+8 10 9 
+Connected component: 3
+11 14 12 13 
+Connected component: 4
+15 17 16 18 
+Connected component: 5
+19 
+Regions: 5
+ and that is all.
