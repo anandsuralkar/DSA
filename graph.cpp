@@ -101,7 +101,7 @@ void bfs(vector<vector<int>> &G){
             q.push(i);
             visited[i]=true;
             count++;
-            cout<<"Connected compunent: "<<count<<endl;
+            cout<<"Connected compunent "<<count<<": ";
             while(!q.empty()){
                 int current = q.front();
                 q.pop();
@@ -116,12 +116,12 @@ void bfs(vector<vector<int>> &G){
         }
     }
 }
-void dfs_(vector<vector<int>> &G, vector<bool> &visited, int i){
-    for(int node: G[i]){
-        if(!visited[node]){
-            visited[node]=true;
-            cout<<node<<" ";
-            dfs_(G,visited,node);
+void dfs_(vector<vector<int>> &G, vector<bool> &visited, int node){
+    visited[node]=true;
+    cout<<node<<" ";
+    for(int neighbour: G[node]){
+        if(!visited[neighbour]){
+            dfs_(G,visited,neighbour);
         }
     }
 }
@@ -132,17 +132,11 @@ void dfs(vector<vector<int>> &G){
     vector<bool> visited(size,false);
     for(int i=0;i<size;i++){
         if(!visited[i]){
-            visited[i]=true;
-
             count++;
-            cout<<"Connected component: "<<count<<endl;
-            cout<<i<<" ";
-            for(int node: G[i]){
-                if(!visited[node]){
-                    dfs_(G,visited,node);
-                }
-            }cout<<endl;
-        }
+            cout<<"Connected component "<<count<<": ";
+            dfs_(G, visited, i);
+            cout<<endl;
+            }
     }
 }
 int main(){
@@ -150,8 +144,8 @@ int main(){
 
     vector<vector<int>>G = grapher(input);
     print(G);
-    dfs_connected(G,0);
     bfs_connected(G,0);
+    dfs_connected(G,0);
     bfs(G);
     dfs(G);
     regions(G);
